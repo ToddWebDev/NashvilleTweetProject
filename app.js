@@ -7,13 +7,19 @@ var app = express();
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 
 //Set Static Path for Front End
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
 app.get('/', function (req, res) {
-	res.send('Hello, World.');//Direct
+	res.render('index', {
+		id: 'an-item-id',
+		name: 'an-item-name'
+	});
 });
 
 
