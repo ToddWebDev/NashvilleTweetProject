@@ -1,0 +1,15 @@
+{
+  "name": "nashvilletweetproject",
+  "version": "1.0.0",
+  "description": "A project that tweets random tweets of kindness.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "nashvilletweetproject"
+  },
+  "author": "toddwebdev",
+  "license": "ISC"
+}
