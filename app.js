@@ -1,11 +1,12 @@
 var dotenv = require('dotenv').config();
 
+//Dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var Twitter = require('twitter');
-//var config = require('./config');
 
+//Express
 var app = express();
 
 var client = new Twitter({
@@ -18,21 +19,14 @@ var client = new Twitter({
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
 
 //Set Static Path for Front End
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Routes
+//API Routes
+app.use('/api', require('./routes/api'));
 
-app.get('/', function (req, res) {
-	res.render('index', {
-		id: 'an-item-id',
-		name: 'an-item-name'
-	});
-});
+
 
 //Twitter API Reference Index https://developer.twitter.com/en/docs/api-reference-index
 client.get('search/tweets', {
@@ -45,12 +39,12 @@ client.get('search/tweets', {
   if (!error) {
     console.log(response);
     // do stuff here later!
-  }
+  } else {
+    console.log(response);
+	}
 });
 
-
-
-//Run the App
-app.listen(process.env.PORT || 3000, function () {
+//Start Server
+app.listen(process.env.PORT || 5000, function () {
   console.log('Twitter API Playground App listening on port 3000!');
 });
