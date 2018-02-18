@@ -41,3 +41,20 @@ client.get('search/tweets', {
     console.log(response);
 	}
 });
+
+router.post('/',function(req, res){
+	var tweetText = 'I love Twitter!'
+	client.post('statuses/update', {status: tweetText},  function(error, tweet, response) {
+		if(!error) {
+		console.log(tweet);  // Tweet body. 
+		console.log(response);  // Raw response object. 
+		
+		return res.json({
+			message: 'Tweet, tweet, tweet!',
+			error: false
+		});
+		} else {
+			console.log('Error! No tweet for you!');
+		}
+	});
+});

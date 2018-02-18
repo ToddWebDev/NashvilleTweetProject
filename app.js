@@ -1,6 +1,7 @@
 
 //Dependencies
 var express = require('express');
+var cors = require('cors');
 var bodyParser = require('body-parser');
 var path = require('path');
 
@@ -10,6 +11,7 @@ var app = express();
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cors());
 
 //Set Static Path for Front End
 app.use(express.static(path.join(__dirname, 'public')));
